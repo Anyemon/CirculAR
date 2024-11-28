@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <br><br>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="{% url 'publicacion:lista_publicaciones' %}">Mis Publicaciones</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="{% url 'compra:compras_realizadas' %}">Mis Compras</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark active" aria-current="page" href="{% url 'compra:trueque_realizado' %}">Mis Trueques</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="{% url 'venta:ventas_realizadas' %}">Mis Ventas</a>
+        </li>
+    </ul>
+    <br>
+
+    <!-- Tabla de Trueques Realizados -->
+    <h1>Trueques Realizados</h1>
+    <br>
+    <div class="table-responsive">
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th style="width: 18%;">NOMBRE DE LA PUBLICACIÓN</th>
+                    <th style="width: 18%;">PRODUCTO OFRECIDO</th>
+                    <th style="width: 18%;">PRECIO</th>
+                    <th style="width: 18%;">IMÁGENES</th>
+                    <th style="width: 10%;">ESTADO</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if trueques_ofrecidos %}
+                    {% for trueque in trueques_ofrecidos %}
+                        <tr>
+                            <td>{{ trueque.publicacion.nombre }}</td>
+                            <td>{{ trueque.producto_ofrecido }}</td>
+                            <td>{{ trueque.publicacion.valor }}</td>
+                            <td>
+                                {% if trueque.imagen1 %}
+                                    <img src="{{ trueque.imagen1.url }}"  class="card-img-top">
+                                {% elif trueque.producto.imagen_1 %}
+                                    <img src="{{ trueque.producto.imagen_1.url }}" alt="Imagen de la publicación" class="card-img-top">
+                                {% else %}
+                                    <img src="{% static 'images/sin_avatar.png' %}" alt="Imagen predeterminada" class="card-img-top">
+                                {% endif %}
+                            </td>
+                                <strong>Estado del trueque:</strong> 
+                                {% if trueque.respuesta_vendedor %}
+                                    {% if trueque.estado_trueque == 'aceptado' %}
+                                        Aceptó el trueque.
+                                    {% elif trueque.estado_trueque == 'rechazado' %}
+                                        Rechazó el trueque.
+                                    {% else %}
+                                        Estado desconocido.
+                                    {% endif %}
+                                {% else %}
+                                    El vendedor no ha respondido aún.
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="6">No has realizado ningún trueque.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Tabla de Trueques Recibidos -->
+    <h1>Trueques Recibidos</h1>
+    <br>
+    <div class="table-responsive">
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th style="width: 18%;">NOMBRE DE LA PUBLICACIÓN</th>
+                    <th style="width: 18%;">PRODUCTO OFRECIDO</th>
+                    <th style="width: 18%;">USUARIO OFERENTE</th>
+                    <th style="width: 18%;">IMAGEN</th>
+                    <th style="width: 10%;">ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if trueques_recibidos %}
+                    {% for trueque in trueques_recibidos %}
+                        <tr>
+                            <td>{{ trueque.publicacion.nombre }}</td>
+                            <td>{{ trueque.producto_ofrecido }}</td>
+                            <td>{{ trueque.usuario.username }}</td>
+                            <td>
+                                {% if trueque.imagen1 %}
+                                    <img src="{{ trueque.imagen1.url }}" alt="Imagen del producto ofrecido" class="card-img-top">
+                                {% elif trueque.producto.imagen_1 %}
+                                    <img src="{{ trueque.producto.imagen_1.url }}" alt="Imagen de la publicación" class="card-img-top">
+                                {% else %}
+                                    <img src="{% static 'images/sin_avatar.png' %}" alt="Imagen predeterminada" class="card-img-top">
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if trueque.estado_trueque == 'pendiente' %}
+                                    <a href="{% url 'venta:responder_trueque' trueque.id 'aceptado' %}" class="btn btn-success btn-sm mb-4">Aceptar</a>
+                                    <a href="{% url 'venta:responder_trueque' trueque.id 'rechazado' %}" class="btn btn-danger btn-sm mb-4">Rechazar</a>
+                                {% else %}
+                                    <span>Trueque {{ trueque.estado_trueque }}</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="6">No tienes ninguna publicacion para ofrecer trueque.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <br>
+    <br>
+    <h2>Eliminar publicación</h2>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card border-primary mb-4 texto">
+                <div class="card-body text-start">
+                    <form class="row g-3" method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Confirma que desea eliminar la publicación?');">Eliminar</button>
+                    </form>
+                    <br>
+                    <div class="text-center">
+                        <a href="{% url 'publicacion:lista_publicaciones' %}"><span class="btn btn-warning form-control" >Volver</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <img src="{% static 'no-shop_16104502.gif' %}" alt="Descripción de la imagen" class="img-fluid" style="max-width: 30%; height: auto;">
+        </div>
+    </div>
+    <br>
+    <br>
+</div>
+{% endblock %}

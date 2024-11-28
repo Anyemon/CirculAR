@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'static/Style.css' %}">
+<div class="container">
+
+    <br>
+    <br>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{% url 'publicacion:publicaciones' %}" class="text-dark fw-bold text-decoration-none">Publicaciones</a>
+            </li>
+            <li class="breadcrumb-item active text-dark fw-bold" aria-current="page">{{ publicacion.rubro }}</li>
+        </ol>
+    </nav>
+    <hr class="my-4">
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="card mb-4">
+                <div class="card-body center">
+
+                    <div id="thumbs">
+                        <img data-year="1" src="{{ publicacion.producto.imagen_1.url }}" class="img-thumbnail"
+                            width="100" height="70" />
+                        <img data-year="2" src="{{ publicacion.producto.imagen_2.url }}" class="img-thumbnail"
+                            width="100" height="70" />
+                        <img data-year="3" src="{{ publicacion.producto.imagen_3.url }}" class="img-thumbnail"
+                            width="100" height="70" />
+                    </div>
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <img src="{% static 'quality-control_12340770.gif' %}" alt="Descripción de la imagen" class="img-fluid" style="max-width: 70%; height: auto;">
+        </div>
+        <br>
+        <br>
+        <div class="col-sm-5">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="image-container">
+                        <!-- Imagen principal con el efecto de zoom -->
+                        <img id="imagenGrande" class="img-fluid" src="{{ publicacion.producto.imagen_1.url }}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <br>
+        <br>
+        <div class="col-sm-5">
+            <div class="card mb-4 texto">
+                <div class="card-body">
+                    <h5 class="card-title">{{ publicacion.nombre}}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">NOMBRE DE LA PUBLICACIÓN: {{ publicacion.nombre}}</li>
+                        <li class="list-group-item">DESCRIPCIÓN: {{ publicacion.descripcion }}</li>
+                        <li class="list-group-item">RUBRO: {{ publicacion.rubro }}</li>
+
+                        <li class="list-group-item">VENDEDOR: {{ publicacion.usuario }}</li>
+                        {% if vendedor %}
+                        {% for vendedor in vendedor %}
+                                                
+                        <li class="list-group-item"> 
+                           <img src="{{ vendedor.avatar.url }}" class="img-thumbnail" width="100" height="70" />
+                        </li>
+
+                        {% endfor %}
+                        {% endif %}
+
+                        <li class="list-group-item"></li>
+                    </ul>
+                    <h6 class="card-title">PRECIO $: {{ publicacion.valor }}</h6>
+                    <h6 class="card-title success">DESCUENTO $: {{ publicacion.descuento }}</h6>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <a href="{% url 'compra:realizar_compra' publicacion.id %}"><span class="btn btn-success" type="button" >Realizar compra</span></a>
+                        <a href="{% url 'publicacion:lista_publicaciones' %}"><span class="btn btn-warning form-control"  >Volver</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-8" style="overflow-y: scroll; height: 600px;">
+                        {% if meeps %}
+                        {% for meep in meeps %}
+                            {% if publicacion.usuario == meep.user %}
+                            <div class="alert alert-warning" role="alert">
+                                <div class="container">
+                                    <div class="row">
+                                            <div class="col-sm-1">
+    
+                                            <img src="../{{ meep.user.avatar }}" alt="usuario" width="50" class="rounded-circle me-2">
+    
+                                        </div> 
+                                        <div class="col-sm-11">
+    
+                                            {{ meep.body }}
+                                            <small class="text-muted"><br />
+                                                {{ meep.created_at}} By
+                                                {{ meep.user.username }}
+                                            </small>
+    
+                                        </div>
+                                    
+                                    </div>    
+    
+                                </div>        
+                                </div>
+                                <br>
+                                <br>
+                                {% else %}
+                                <div class="alert alert-dark" role="alert">
+                                    <div class="container">
+                                        <div class="row">
+                                                <div class="col-sm-1">
+        
+                                                <img src="../{{ meep.user.avatar }}" alt="usuario" width="50" class="rounded-circle me-2">
+        
+                                            </div> 
+                                            <div class="col-sm-11">
+        
+                                                {{ meep.body }}
+                                                <small class="text-muted"><br />
+                                                    {{ meep.created_at}} By
+                                                    {{ meep.user.username }}
+                                                </small>
+        
+                                            </div>
+                                        
+                                        </div>    
+        
+                                    </div>        
+                                    </div>
+                                <br>
+                                <br>
+                            {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-4">
+                        {% if form %}
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-secondary">Pregunta!!</button>
+                        </form>
+                        
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+        </div>
+       
+    </div>
+</div>
+<div class="container col-xxl-8 px-2 py-3"></div>
+    <h3>Mas publicaciones del mismo Vendedor</h3>
+    <hr class="my-4">
+    
+    <div class="card border-light">
+        <div class="card-body">
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+    {% for publicacion in publicados %}
+    
+    <div class="col">
+        <a href="{% url 'publicacion:mostrar_publicacion' id=publicacion.id %}" class="text-decoration-none text-dark card-link">
+            <div class="card h-100 card-hover">
+                <div class="image-container">
+                    <img src="{{ publicacion.producto.imagen_1.url }}" class="card-img-top card-img-hover" alt="Imagen del producto">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ publicacion.nombre }}</h5>
+                    <p class="card-text">{{ publicacion.descripcion}}</p>
+                    <p class="card-text"><small class="text-body-secondary">${{ publicacion.valor }}</small></p>
+                </div>
+            </div>
+        </a>
+    </div>
+    
+    {% endfor %}
+</div>
+</div>
+</div>
+</div>
+
+    {% endblock %}

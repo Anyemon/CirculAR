@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <br>
+    <br>
+    {% if form.errors %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        Ha habido algun error en la modificación de sus datos...
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+        <a class="nav-link text-dark active" aria-current="page" href="{% url 'Usuarios:misDatos' %}">Mis Datos</a>
+     
+    </ul>
+    <br>
+    <br>
+    <h2>Eliminar Cuenta</h2>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-sm-6 ">
+            <div class="card mb-4 pt-4 texto">
+                <div class="card-body">
+                    <form class="row g-1" method=POST>
+                        {% csrf_token %}
+                        <h5>Si estás seguro/a de eliminar tu cuenta, por favor haga click en el siguiente botón</h5>
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Confirma que desea eliminar la cuenta?');">Eliminar</button>
+                    </form>
+                    <br>
+                    <div class="text-center">
+                        <a href="{% url 'Usuarios:misDatos' %}"><span class="btn btn-warning">Volver</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <img src="{% static 'remove-user_16678150.gif' %}" alt="Descripción de la imagen" class="img-fluid" style="max-width: 30%; height: auto;">
+        </div>
+    </div>
+    <br>
+    <br>
+</div>
+{% endblock %}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acerca de Nosotros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #2a3c57;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77aaff 3px solid;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding h1 {
+            margin: 0;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        section {
+            padding: 20px;
+            margin: 20px 0;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <a href="{% url 'home' %}" ><h1 style= "color: white;">CirculAR </h1></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#acerca">Acerca de Nosotros</a></li>
+                    <li><a href="#faq">Preguntas Frecuentes</a></li>
+                    <li><a href="#terminos">Términos y Condiciones</a></li>
+                    <li><a href="#privacidad">Política de Privacidad</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="acerca">
+            <h2>Acerca de Nosotros</h2>
+            <p>CirculAR es una plataforma dedicada a la compra y venta de productos usados, fundada en 2024 con la misión de fomentar el reciclaje y la reutilización de artículos que han dejado de usarse o han perdido su valor con el tiempo. Nuestro objetivo es ofrecer a cada usuario la oportunidad de "circular" productos que creían inservibles o sin interés para otros. Trabajamos incansablemente para brindar una experiencia de calidad a través de una página web diseñada para facilitar una interacción fluida y satisfactoria..</p>
+        </section>
+
+        <section id="faq">
+            <h2>Preguntas Frecuentes</h2>
+            <h3>1. ¿Cómo puedo realizar un pedido?</h3>
+            <p>Para realizar un pedido, selecciona el producto que te interesa y sigue las instrucciones proporcionadas para completar el proceso, ya sea mediante pago o trueque.</p>
+            <h3>2. ¿Cuáles son las opciones de pago disponibles?</h3>
+            <p>Aceptamos efectivo, deposito/transferencia, tarjeta debito/credito, trueque.</p>
+            <h3>3. ¿Cuánto tiempo tarda en llegar mi pedido?</h3>
+            <p>El tiempo de entrega varía según tu ubicación y el método de envío arreglado con el vendedor. Generalmente, los pedidos se entregan en un plazo de 3 a 7 dias.</p>
+            
+        </section>
+
+        <section id="terminos">
+            <h2>Términos y Condiciones</h2>
+            <h3>1. Introducción</h3>
+            <p>Estos términos y condiciones rigen el uso de nuestro sitio web. Al utilizar nuestro sitio, aceptas estos términos en su totalidad.</p>
+            <h3>2. Uso del Sitio</h3>
+            <p>No debes usar nuestro sitio de manera que cause, o pueda causar, daño al sitio o deterioro de la disponibilidad o accesibilidad del sitio.</p>
+            <h3>3. Propiedad Intelectual</h3>
+            <p>Todo el contenido del sitio, incluyendo textos, gráficos, logotipos, imágenes y software, es propiedad de CirculAR y está protegido por las leyes de derechos de autor.</p>
+            <h3>4. Limitación de Responsabilidad</h3>
+            <p>CirculAR no será responsable por cualquier daño que surja del uso o la imposibilidad de uso de los materiales en este sitio.</p>
+        </section>
+
+        <section id="privacidad">
+            <h2>Política de Privacidad</h2>
+            <h3>1. Información Recopilada</h3>
+            <p>Recopilamos información personal que nos proporcionas al registrarte, realizar un pedido o suscribirte a nuestro boletín.</p>
+            <h3>2. Uso de la Información</h3>
+            <p>Utilizamos la información recopilada para procesar tus pedidos, mejorar nuestro sitio web y enviarte información promocional.</p>
+            <h3>3. Protección de la Información</h3>
+            <p>Implementamos diversas medidas de seguridad para mantener la seguridad de tu información personal.</p>
+            <h3>4. Divulgación a Terceros</h3>
+            <p>No vendemos, intercambiamos ni transferimos a terceros tu información personal sin tu consentimiento, excepto para cumplir con la ley, hacer cumplir nuestras políticas del sitio, o proteger nuestros derechos, propiedad o seguridad.</p>
+        </section>
+    </div>
+</body>
+</html>

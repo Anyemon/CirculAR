@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+    <title>Confirmación de Compra</title>
+    
+    <h1>¡Gracias por tu compra!</h1>
+    
+    <p>Tu compra ha sido realizada con éxito.</p>
+    <p>Nos pondremos en contacto contigo para coordinar la entrega y el pago, si corresponde.</p>
+    
+    <h2>Detalles de la compra:</h2>
+    <p><strong>Producto:</strong> {{ publicacion.nombre }}</p>
+    <p><strong>Precio:</strong> ${{ publicacion.valor }}</p>
+    
+    <h3>¿Qué hacer a continuación?</h3>
+    <p>Por favor, verifica tu correo electrónico para obtener más información.</p>
+
+    <a href="{% url 'compra:compras_realizadas' publicacion.id %}">Volver al inicio</a>
+{% endblock %}

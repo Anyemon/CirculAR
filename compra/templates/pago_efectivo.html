@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+    <title>Pago en Efectivo</title>
+    
+    <h1 class="m-3">Pago en Efectivo</h1>
+    <p class="m-3">Estás comprando: {{ publicacion.nombre }}</p>
+    <p class="m-3">Precio: {{ publicacion.valor }}</p>
+    <form method="post">
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-success m-3">Confirmar Pago</button>
+        <a href="{% url 'compra:realizar_compra' publicacion.id %}"><span class="btn btn-danger m-3">Cancelar</span></a>
+    </form>
+    <img src="{% static 'efectivo1.gif' %}" alt="Descripción de la imagen" class="img-fluid" style="max-width: 15%; height: auto;">
+{% endblock %}
+

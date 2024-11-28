@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <br>
+    
+    {% if form.errors %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        Ha habido algun error en su formulario de registro...
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    <h4 class="fw-bold pb-3">Para crear tu cuenta te pediremos algunos datos</h4>
+    
+    
+    <div class="row">
+        <!-- Columna del formulario -->
+        <div class="col-md-6">
+            <div class="card mb-4 texto">
+                <div class="card-body">
+                    <form class="row g-3 text-start" method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-success" >Registrarse</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna de la imagen -->
+        <div class="col-md-4 d-flex justify-content-center align-items-center" style="margin-left: 200px; margin-top: -400px;">
+            <img src="{% static 'questionnaire_12134209.gif' %}" alt="Descripción de la imagen" class="img-fluid" style="max-width: 50%; height: auto;">
+        </div>
+    </div>
+    <br>
+    <br>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<title>Pago por Transferencia Bancaria/Depósito</title>
+
+    <div class="card mt-4 mb-2 w-75 box">
+        <div class="card-body">
+            <h1>Pago por Transferencia Bancaria/Depósito</h1>
+            <p>Estás comprando: {{ publicacion.nombre }}</p>
+            <p>Por favor, realiza la transferencia bancaria o depósito usando los siguientes datos:</p>
+
+            <h2>Datos de la Cuenta:</h2>
+            <p><strong>Banco:</strong> [Nombre del Banco]</p>
+            <p><strong>Nombre del Titular:</strong> [Nombre del Titular]</p>
+            <p><strong>Cuenta:</strong> [Número de Cuenta]</p>
+            <p><strong>CBU:</strong> [CBU]</p>
+            <p><strong>Alias:</strong> [Alias]</p>
+            <p><strong>Importe:</strong> [Monto a Transferir]</p>
+
+            <p>Una vez realizada la transferencia o depósito, por favor confirma el pago completando el siguiente formulario:</p>
+        </div>
+    </div>
+    
+    <form class="texto w-75 mb-3 mt-3 pt-3"method="post">
+        
+        {% csrf_token %}
+        {{ CompraFormSet.as_p }}
+        {{ form.as_p }}
+    
+        
+        <button type="submit" class="btn btn-success m-3">Confirmar Pago</button>
+        <a href="{% url 'compra:realizar_compra' publicacion.id %}"><span class="btn btn-danger m-3">Cancelar</span></a>
+    </form>
+    {% endblock %}

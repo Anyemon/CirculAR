@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <br>
+    <br>
+    {% if form.errors %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        Ha habido algun error en la modificación de sus datos...
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    <ul class="nav nav-tabs fw-bold">
+        <li class="nav-item">
+        <a class="nav-link text-dark active" aria-current="page" href="{% url 'Usuarios:misDatos' %}">Mis Datos</a>
+    
+    </ul>
+    <br>
+    
+    
+    
+    <br>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card mb-4 texto">
+                <div class="card-body text-start fs-5">
+                    <form class="row g-1" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-success">Modificar</button>
+                    </form>
+                    <br>
+                    <div class="text-center">
+                        <a href="{% url 'Usuarios:misDatos' %}"><span class="btn btn-warning">Volver</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center align-items-center" style="margin-left: 200px; margin-top: -400px;">
+            <img src="{% static 'work-progress_10282646.gif' %}" alt="Descripción de la imagen" class="img-fluid" style="max-width: 50%; height: auto;">
+        </div>
+    </div>
+    <br>
+    <br>
+</div>
+{% endblock %}

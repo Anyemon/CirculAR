@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+<h1 class="m-5">Selecciona una publicación para ofrecer en el trueque</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <!-- Mostrar las publicaciones disponibles para el trueque -->
+    <div class="row">
+        {% if lista_publicaciones %}
+            {% for publicacion in lista_publicaciones %}
+                <div class="col-md-3 mb-5">
+                    <div class="card card-link">
+                        <div class="image-container">
+                            <img src="{{ publicacion.producto.imagen_1.url }}" alt="{{ publicacion.nombre }}" class="card-img-top">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ publicacion.nombre }}</h5>
+                            <p class="card-text">{{ publicacion.descripcion }}</p>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" name="publicacion_seleccionada_id" value="{{ publicacion.id }}" class="btn btn-primary">Seleccionar esta publicación</button>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <a href="{% url 'compra:realizar_compra' publicacion.id %}" class="btn btn-danger mt-2">Cancelar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12 text-center">
+                <p>No tienes publicaciones disponibles para ofrecer en trueque.</p>
+            </div>
+        {% endif %}
+    </div>
+
+</form>
+
+<!-- Mostrar mensajes -->
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %} 
+    </ul>
+{% endif %}
+{% endblock %}

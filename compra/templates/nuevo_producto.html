@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mx-auto">Ofrecer Producto para Trueque</h2>
+<div>
+    <div class="card w-75 mt-3 mb-3">
+        <div class="card-body texto">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success btn-lg m-1">Enviar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

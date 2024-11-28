@@ -1,0 +1,88 @@
+{% extends "tasks/base.html" %}
+{% block content %}
+<div class="container">
+
+    <div class="card text-center">
+        <div class="card-header">
+          Busquedas
+        </div>
+        <div class="card-body">
+          <p class="card-text">Ingrese el nombre o algo de la descripción de lo que desea buscar.</p>
+    
+          <form method="POST" actions="{% url 'search' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Buscar Productos" name="searched">
+            </div>
+            <button type="submit" class="btn btn-success">
+                Buscar Productos
+            </button>                 
+
+          </form>
+        </div>
+        
+    </div>
+    <br/>
+    <br/>
+    {% if searched %}
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      
+      {% for Product in searched %}
+      
+      <div class="col">
+        <div class="card border-success mb-3">
+          
+          <div class="card-body">
+            
+            <img src="/{{ Product.imagen_1 }}" class="bd-placeholder-img card-img-top" width="100" height="300">
+                    
+          </div>
+          <div class="card-footer bg-transparent">
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>{{ Product.name }}</li>
+              <li>{{ Product.precio }}</li>                    
+            </ul>
+    
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-danger">Comprar</button>
+                
+              </div>
+              <small class="text-body-secondary">9 mins</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% endfor %}
+     
+    </div>  
+
+    {% endif %}
+
+    <div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6"> 
+        
+        {% load static %}
+        <img src="{% static 'tasks/electros.png' %}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+        </div>
+        <div class="col-lg-6">
+        <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Solo requiere Registrarse</h1>
+        <p class="lead">Ingresa a una de las mejores y mas difundidas paginas dedicadas a la venta de usados. Cientos de usuarios avalan nuestra experiencia. Sin tasas ocultas, sin gastos, solo el deseo de que puedas vender/comprar un usado</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a href="{% url 'register_user' %}"><span class="btn btn-success">Registrarse</span></a>  
+            
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+  
+
+</div>
+ 
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Responder al Trueque</h2>
+
+<p><strong>Producto Ofrecido:</strong> {{ trueque.producto_ofrecido }}</p>
+<p><strong>Mensaje del Usuario:</strong> {{ trueque.usuario.get_username }}</p>
+
+<a href="{% url 'compra:responder_trueque' trueque.id 'aceptar' %}" class="btn btn-success">Aceptar Trueque</a>
+<a href="{% url 'compra:responder_trueque' trueque.id 'rechazar' %}" class="btn btn-danger">Rechazar Trueque</a>
+{% endblock %}

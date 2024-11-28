@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<h1 class="mb-3">Compra {{ publicacion.nombre }}</h1>
+<img src="{{ publicacion.producto.imagen_1.url }}" class="img-fluid mb-3" width="300" height="300" />
+<img src="{% static 'payment.gif' %}" alt="Descripción de la imagen" class="img-fluid ms-5" style="max-width: 15%; height: auto;">
+<p class="mb-3"><strong>Precio: ${{ publicacion.valor }}</strong></p>
+
+
+<form method="POST">
+    {% csrf_token %}
+    <label for="medio_pago">¿Con qué medio abonás?</label>
+    <select class="ms-3 mb-5" name="medio_pago" id="medio_pago" required>
+        <a href="{% url 'compra:pago_transferencia' publicacion.id %}"><option value="TRANSFERENCIA">Depósito/Transferencia</option></a>
+        <a href="{% url 'compra:pago_efectivo' publicacion.id %}"><option value="EFECTIVO">Efectivo</option></a>
+        <a href="{% url 'api:procesar_pago' publicacion.id %}"><option value="MERCADOPAGO">Tarjeta deb/cred</option></a>
+        <a href="{% url 'compra:trueque' publicacion.id %}"><option value="TRUEQUE">Trueque</option>
+    </select>
+    <button type="submit" class="btn btn-success ms-3">Realizar compra</button>
+</form>
+
+{% endblock %}

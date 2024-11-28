@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <br>
+    <br>
+    <h1>Modificación de la Publicación</h1>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="card mb-4 texto">
+                <div class="card-body text-start">
+                    <form class="row g-3" action="" method=POST enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ publicacionFormSet.as_p }}
+                        {{ form.as_p }}
+                        <input type="submit" value="Modificar" class="btn btn-success">
+                    </form>
+                    <br>
+                    <div class="text-center">
+                        <a href="{% url 'publicacion:lista_publicaciones' %}"><span class="btn btn-warning form-control" >Volver</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div>
+                <img id="imagenGrande" class="img-thumbnail" src="{{ publicacion.producto.imagen_1.url }}" />
+            </div>
+
+            <div>
+                <img id="imagenGrande" class="img-thumbnail" src="{{ publicacion.producto.imagen_2.url }}" />
+            </div>
+
+            <div>
+                <img id="imagenGrande" class="img-thumbnail" src="{{ publicacion.producto.imagen_3.url }}" />
+            </div>
+
+
+        </div>
+    </div>
+    <br>
+    <br>
+</div>
+{% endblock %}

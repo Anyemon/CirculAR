@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <br>
+    <br>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link text-dark active" aria-current="page" href="{% url 'publicacion:lista_publicaciones' %}">Mis Publicaciones</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="{% url 'compra:compras_realizadas' %}">Mis Compras</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="{% url 'compra:trueque_realizado' %}">Mis Trueques</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="{% url 'venta:ventas_realizadas' %}">Mis Ventas</a>
+        </li>
+    </ul>
+    <br>
+    <h1>Lista de Publicaciones de: {{ user.username }}</h1>
+    <br>
+    <div class="d-grid gap-3 d-md-block">
+        <a class="btn btn-info" role="button" href="{% url 'publicacion:nuevaPublicacion' %}">Ingresar producto</a>
+    </div>
+    <br>
+    <div class="table-responsive">
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    
+                    <th style="width: 22%;">PUBLICACIÓN</th>
+                    <th style="width: 22%;">DESCRIPCIÓN</th>
+                    <th style="width: 22%;">RUBRO</th>
+                    <th style="width: 22%;">PRECIO</th>
+                    <th style="width: 22%;">IMAGEN1</th>
+                    <th style="width: 22%;">Consultas</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for publicacion in lista_publicaciones %}
+                <tr>
+                    <td><svg class="bi" width="24" height="24"></svg>
+                        {{ publicacion.nombre }}
+                    </td>
+                    <td><svg class="bi" width="24" height="24"></svg>
+                        {{ publicacion.descripcion }}
+                    </td>
+                    <td><svg class="bi" width="24" height="24"></svg>
+                        {{ publicacion.rubro }}
+                    </td>
+                    <td><svg class="bi" width="24" height="24"></svg>
+                        {{ publicacion.valor }}
+                    </td>
+                    <td><svg class="bi" width="24" height="24"></svg>
+                        <img src="{{ publicacion.producto.imagen_1.url }}" class="img-fluid" width="300" height="300" />
+                    </td>
+                    <td><svg class="bi" width="24" height="24"></svg>
+                        {{ publicacion.comentarios }}
+                    </td>
+                    <td>
+                        <a href="{% url 'publicacion:mostrar_publicacion' id=publicacion.id %}"><span class="btn  btn-success btn-sm fw-light">Ver</span></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'publicacion:modificar_publicacion' id=publicacion.id %}"><span class="btn btn-primary btn-sm fw-light" >Modificar</span></a>                    </td>
+                    <td>
+                        <a href="{% url 'publicacion:eliminar_publicacion' id=publicacion.id %}"><span class="btn btn-danger btn-sm fw-light">Borrar</span></a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td> 
+                  <td colspan="6">Todavia no tienes productos publicados.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+{% endblock %}

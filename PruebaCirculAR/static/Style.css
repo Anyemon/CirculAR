@@ -1,0 +1,184 @@
+
+.class1 {
+    background-color:white;
+    
+}
+
+.title-text {
+    font-size: 2rem; 
+    color: black;    
+    font-weight: bold; 
+}
+
+.logo {
+    margin-left: 20px;
+}
+
+.item {
+    font-weight: bold;
+   
+}
+
+
+
+.texto1.mt-1 {
+    background-color:#c9926e; 
+    text-align: center;
+    color: white;
+    height: 100%;
+}
+
+.texto {
+    background-color: #2a3c57; 
+    text-align: center;
+    color: white;
+}
+
+
+.texto p {
+    margin-right: 75px;
+}
+
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold; 
+    
+}
+
+.nav-link1 {
+    color: black;
+    text-decoration: none;
+}
+
+
+.box {
+    background-color: #f8f9fa; /* Color de fondo de la barra de navegación */
+    border-top: 1px solid #e0e0e0; /* Línea superior muy clara */
+    border-bottom: 1px solid #e0e0e0; /* Línea inferior muy clara */
+    padding: 10px; /* Espaciado interno */
+}
+
+
+.novedades {
+    text-align: center;
+}
+
+.celeste-fondo {
+    background-color: #00aae4; /* Color celeste */
+    height: 100%;
+}
+
+
+.fade-out {
+    opacity: 0;
+    filter: blur(5px);
+    transform: scale(0.95) translateY(20px);
+    transition: opacity 0.8s ease-out, filter 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1) translateY(0);
+    transition: opacity 0.8s ease-in, filter 0.8s ease-in, transform 0.8s ease-in;
+}
+
+.mover {
+    margin-left: 200px;
+}
+
+/* Estilos para el título en el header */
+.title-text {
+    display: flex;
+    align-items: center;
+    font-size: 2.5rem; /* Tamaño de fuente grande para destacar */
+    font-weight: bold; /* Fuente en negrita para mayor visibilidad */
+    color: #333; /* Color del texto */
+    position: relative;
+    
+    letter-spacing: 1px; /* Espaciado de letras para mayor claridad */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra de texto para mayor impacto */
+    transition: color 0.3s ease, transform 0.3s ease; /* Transiciones suaves para hover */
+    text-decoration: none; /* Asegúrate de que no haya subrayado */
+  }
+  
+  /* Resalta el texto del título con un efecto de fondo */
+  .title-highlight {
+    background: linear-gradient(90deg, #020e1b, #181764); /* Degradado para darle un efecto moderno */
+    -webkit-background-clip: text; /* Para aplicar el gradiente al texto */
+    -webkit-text-fill-color: transparent; /* Hacer el texto transparente para mostrar el gradiente */
+    padding-right: 0.5rem; /* Espacio para el icono si se agrega */
+  }
+  
+  /* Efecto hover para el título */
+  .title-text:hover {
+    color: #0a4894; /* Cambiar color al pasar el cursor sobre el título */
+    transform: scale(1.25); /* Agrandar ligeramente el título al hacer hover */
+  }
+  
+
+probando home inicial
+
+
+  
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+}
+
+.flex-items, .flex-items2 {
+    flex: 1;
+    max-width: 100%;
+    padding: 10px;
+}
+
+.flex-items img {
+    max-width: 100%;
+    height: 100%;
+}
+  
+  
+  
+.flex-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.flex-items img {
+    max-width: 100%;
+    height: auto;
+}
+
+.no-select {
+    user-select: none;
+}
+
+
+.card-link:hover .card-title,
+.card-link:hover .card-text {
+    color: #00aae4;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center; /* Centra la imagen horizontalmente */
+    align-items: center; /* Centra la imagen verticalmente */
+    height: 350px; /* Ajusta la altura según sea necesario */
+    overflow: hidden; /* Asegura que la imagen no se desborde */
+}
+
+  /* Efecto de agrandado cuando el mouse pasa sobre la imagen */
+  .image-container:hover img {
+    transform: scale(1.2); /* Agranda la imagen un 20% */
+}
+
+.image-container img {
+    transition: transform 0.3s ease; /* Transición suave para el zoom */
+    width: 100%;  /* Asegura que la imagen ocupe todo el ancho del contenedor */
+}

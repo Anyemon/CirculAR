@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2 ">
+            <img src="{% static 'monitor_13399362.gif' %}" alt="Descripción de la imagen" class="img-fluid" style="max-width: 70%; height: auto;">
+        </div>
+         
+        <div class="col-sm-9">
+            <div class="card text-center">
+                <div class="card-body">
+                  <p class="card-text">Ingrese el nombre o algo de la descripción de lo que desea buscar.</p>
+                  {% if searched %}
+                  <p class="card-text">Total de Publicaciones Encontradas: {{ total_search }}</p>
+                  {% endif %}   
+                  <form method="POST" actions="{% url 'publicacion:buscar_publicacion' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <input type="text" class="form-control" placeholder="Buscar Productos" name="searched">
+                    </div>
+                    <button type="submit" class="btn btn-success">
+                        Buscar Productos
+                    </button>                 
+        
+                  </form>
+                </div>
+                
+            </div>
+            <br/>
+            <br/>
+            {% if searched_1 %}
+            {% for rubros_1 in rubros_1 %}
+
+            <h4>Total Publicaciones Encontradas en {{rubros_1.nombre}}:  {{ total_search_1 }}</h4>
+            <br/>
+            <br/>
+            <div class="row row-cols-1 
+                                    
+            row-cols-md-3 g-4">
+              
+              {% for publicacion in searched_1 %}
+              
+              <div class="col">
+                <a href="{% url 'publicacion:mostrar_publicacion' id=publicacion.id %}" class="text-decoration-none text-dark card-link">
+                    <div class="card h-100 card-hover">
+                        <div class="image-container">
+                            <img src="{{ publicacion.producto.imagen_1.url }}" class="card-img-top card-img-hover" alt="Imagen del producto">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ publicacion.nombre }}</h5>
+                            <p class="card-text">{{ publicacion.descripcion}}</p>
+                            <p class="card-text"><small class="text-body-secondary">${{ publicacion.valor }}</small></p>
+                        </div>
+                    </div>
+                </a>
+              </div>
+            
+                    
+              {% endfor %}
+              {% endfor %}
+             
+            </div>  
+            <br/>
+            <br/>
+            {% endif %}
+
+            {% if searched_2 %}
+            {% for rubros_2 in rubros_2 %}
+
+            <h4>Total Publicaciones Encontradas en {{rubros_2.nombre}}:  {{ total_search_2 }}</h4>
+            <br/>
+            <br/>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+              
+              {% for publicacion in searched_2 %}
+              
+              <div class="col">
+                <a href="{% url 'publicacion:mostrar_publicacion' id=publicacion.id %}" class="text-decoration-none text-dark card-link">
+                    <div class="card h-100 card-hover">
+                        <div class="image-container">
+                            <img src="{{ publicacion.producto.imagen_1.url }}" class="card-img-top card-img-hover" alt="Imagen del producto">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ publicacion.nombre }}</h5>
+                            <p class="card-text">{{ publicacion.descripcion}}</p>
+                            <p class="card-text"><small class="text-body-secondary">${{ publicacion.valor }}</small></p>
+                        </div>
+                    </div>
+                </a>
+              </div>
+            
+                       
+        
+              {% endfor %}
+              {% endfor %}
+			  </div>  
+              <br/>
+              <br/>
+            
+            {% endif %}
+
+            {% if searched_3 %}
+            {% for rubros_3 in rubros_3 %}
+
+            <h4>Total Publicaciones Encontradas en {{rubros_3.nombre}}:  {{ total_search_3 }}</h4>
+            <br/>
+            <br/>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+              
+              {% for publicacion in searched_3 %}
+              
+              <div class="col">
+                <a href="{% url 'publicacion:mostrar_publicacion' id=publicacion.id %}" class="text-decoration-none text-dark card-link">
+                    <div class="card h-100 card-hover">
+                        <div class="image-container">
+                            <img src="{{ publicacion.producto.imagen_1.url }}" class="card-img-top card-img-hover" alt="Imagen del producto">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ publicacion.nombre }}</h5>
+                            <p class="card-text">{{ publicacion.descripcion}}</p>
+                            <p class="card-text"><small class="text-body-secondary">${{ publicacion.valor }}</small></p>
+                        </div>
+                    </div>
+                </a>
+              </div>
+                                  
+        
+              {% endfor %}
+              {% endfor %}
+			  </div>  
+              <br/>
+              <br/>
+            
+            {% endif %}
+            
+            {% if searched_4 %}
+            {% for rubros_4 in rubros_4 %}
+
+            <h4>Total Publicaciones Encontradas en {{rubros_4.nombre}}:  {{ total_search_4 }}</h4>
+            <br/>
+            <br/> 
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+              
+              {% for publicacion in searched_4 %}
+              
+              <div class="col">
+                <a href="{% url 'publicacion:mostrar_publicacion' id=publicacion.id %}" class="text-decoration-none text-dark card-link">
+                    <div class="card h-100 card-hover">
+                        <div class="image-container">
+                            <img src="{{ publicacion.producto.imagen_1.url }}" class="card-img-top card-img-hover" alt="Imagen del producto">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ publicacion.nombre }}</h5>
+                            <p class="card-text">{{ publicacion.descripcion}}</p>
+                            <p class="card-text"><small class="text-body-secondary">${{ publicacion.valor }}</small></p>
+                        </div>
+                    </div>
+                </a>
+              </div>
+                      
+        
+              {% endfor %}
+              {% endfor %}
+            </div>
+              <br/>
+              <br/>
+            </div>  
+            {% endif %}       
+        </div>
+    </div>
+</div>
+<br>
+<br>
+
+{% endblock %}
